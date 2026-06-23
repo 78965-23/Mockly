@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy — Mockly</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="nav" role="banner">
+        <div class="nav-inner">
+            <a href="Index.html" class="nav-logo" aria-label="Mockly Home">Mock<span>ly</span></a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="Index.html#home">Home</a>
+                <a href="Index.html#topics">Topics</a>
+                <a href="Index.html#mock-tests">Mock Tests</a>
+                <a href="Index.html#leaderboard">Leaderboard</a>
+                <a href="Index.html#about">About</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="btnLogin" aria-label="Open login form">Login</button>
+                <button class="btn btn-primary" id="btnSignup" aria-label="Open sign up form">Sign Up</button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-inner">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+            <a href="Index.html#home">Home</a>
+            <a href="Index.html#topics">Topics</a>
+            <a href="Index.html#mock-tests">Mock Tests</a>
+            <a href="Index.html#leaderboard">Leaderboard</a>
+            <a href="Index.html#about">About</a>
+            <div class="mobile-actions">
+                <button class="btn btn-outline" id="btnLoginMobile">Login</button>
+                <button class="btn btn-primary" id="btnSignupMobile">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Refund Policy</h2>
+                    <p>Last revised: June 2026</p>
+                </div>
+                <div class="policy-content" style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--color-text-secondary);">
+                    <p>We want you to be satisfied with your Mockly subscription. If you are not completely happy, we offer a straightforward refund policy as outlined below.</p>
+                    
+                    <h3 style="margin-top: 28px; margin-bottom: 12px; color: var(--color-text);">1. Free Trial</h3>
+                    <p>Many features remain free forever. Paid plans may start with a 7‑day free trial. If you cancel before the trial ends, you will not be charged.</p>
+                    
+                    <h3 style="margin-top: 28px; margin-bottom: 12px; color: var(--color-text);">2. Money‑Back Guarantee</h3>
+                    <p>If you purchase a monthly or annual plan and are not satisfied, you can request a full refund within 14 days of the initial payment. After 14 days, refunds are not available for that billing period.</p>
+                    
+                    <h3 style="margin-top: 28px; margin-bottom: 12px; color: var(--color-text);">3. How to Request a Refund</h3>
+                    <p>Send an email to <a href="mailto:support@mockly.example.com">support@mockly.example.com</a> with your account email, order reference, and the reason for the refund. We will process eligible requests within 5‑7 business days.</p>
+                    
+                    <h3 style="margin-top: 28px; margin-bottom: 12px; color: var(--color-text);">4. Exceptions</h3>
+                    <p>Refunds are not granted for partial usage, discounts, or promotional offers unless explicitly stated. Accounts terminated for violating our <a href="Terms.html">Terms & Conditions</a> are not eligible for refunds.</p>
+                    
+                    <h3 style="margin-top: 28px; margin-bottom: 12px; color: var(--color-text);">5. Changes to This Policy</h3>
+                    <p>We reserve the right to modify this Refund Policy. Changes will be effective immediately upon posting.</p>
+                    
+                    <p style="margin-top: 28px;">For further assistance, contact <a href="mailto:support@mockly.example.com">support@mockly.example.com</a>.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Mockly</h4>
+                    <p>Mockly is a comprehensive practice platform offering thousands of MCQs and mock tests for competitive exams, academic assessments, and skill development.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="Index.html#home">Home</a></li>
+                        <li><a href="Index.html#topics">Topics</a></li>
+                        <li><a href="Index.html#mock-tests">Mock Tests</a></li>
+                        <li><a href="Index.html#leaderboard">Leaderboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>Email: support@mockly.example.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: 42 Learning Lane, Knowledge City, India</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="Privacy.html">Privacy Policy</a></li>
+                        <li><a href="Terms.html">Terms &amp; Conditions</a></li>
+                        <li><a href="Refund.html" style="font-weight: 600; color: var(--color-primary);">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Mockly. All rights reserved.</span>
+                <div class="footer-bottom-links">
+                    <a href="Privacy.html">Privacy Policy</a>
+                    <a href="Terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            } else {
+                mobileMenu.classList.add('open');
+                hamburger.classList.add('active');
+                hamburger.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        hamburger.addEventListener('click', toggleMenu);
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+                hamburger.focus();
+            }
+        });
+    </script>
+</body>
+</html>
