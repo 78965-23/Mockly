@@ -160,11 +160,6 @@ switchToLogin.addEventListener('click', () => {
     document.getElementById('loginEmail').focus();
 });
 
-/ ========== SPINNER ========== /
-const spinner = document.getElementById('spinnerOverlay');
-function showSpinner() { spinner.classList.add('open'); spinner.setAttribute('aria-hidden', 'false'); }
-function hideSpinner() { spinner.classList.remove('open'); spinner.setAttribute('aria-hidden', 'true'); }
-
 / ========== FIREBASE AUTH ========== /
 const loginSubmit = document.getElementById('loginSubmit');
 const signupSubmit = document.getElementById('signupSubmit');
