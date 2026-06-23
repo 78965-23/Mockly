@@ -1,5 +1,4 @@
 // firebase-config.js
-// Firebase configuration for Mockly (mockly2-fe6bc)
 const firebaseConfig = {
   apiKey: "AIzaSyC3RBe6AlCewKXkcVS4cDEXLDbClTvBgBY",
   authDomain: "mockly2-fe6bc.firebaseapp.com",
