@@ -1,4 +1,4 @@
-/* ========== CSS CUSTOM PROPERTIES ========== */
+/ ========== CSS CUSTOM PROPERTIES ========== /
 :root {
     --color-primary: #2563eb;
     --color-primary-dark: #1d4ed8;
@@ -31,7 +31,7 @@
     --transition: 200ms ease;
 }
 
-/* ========== RESET & BASE ========== */
+/ ========== RESET & BASE ========== /
 *,
 *::before,
 *::after {
@@ -57,7 +57,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Skip to content link */
+/ Skip to content link /
 .skip-link {
     position: absolute;
     top: -100px;
@@ -125,7 +125,7 @@ p {
     color: var(--color-text-secondary);
 }
 
-/* ========== CONTAINER ========== */
+/ ========== CONTAINER ========== /
 .container {
     width: 100%;
     max-width: var(--max-width);
@@ -143,7 +143,7 @@ p {
     }
 }
 
-/* ========== SECTION STYLES ========== */
+/ ========== SECTION STYLES ========== /
 .section {
     padding: 60px 0;
 }
@@ -179,7 +179,7 @@ p {
     margin: 0 auto;
 }
 
-/* ========== NAVIGATION ========== */
+/ ========== NAVIGATION ========== /
 .nav {
     position: sticky;
     top: 0;
@@ -297,7 +297,7 @@ p {
     border-radius: var(--radius);
 }
 
-/* Hamburger */
+/ Hamburger /
 .hamburger {
     display: flex;
     align-items: center;
@@ -350,7 +350,7 @@ p {
     transform: rotate(-45deg);
 }
 
-/* Mobile menu */
+/ Mobile menu /
 .mobile-menu {
     display: none;
     position: fixed;
@@ -397,7 +397,7 @@ p {
     text-align: center;
 }
 
-/* ========== HERO ========== */
+/ ========== HERO ========== /
 .hero {
     padding: 48px 0 56px;
     background: var(--color-bg);
@@ -450,7 +450,7 @@ p {
     justify-content: center;
 }
 
-/* Subtle hero decoration */
+/ Subtle hero decoration /
 .hero-decor {
     display: none;
 }
@@ -481,7 +481,7 @@ p {
     overflow: hidden;
 }
 
-/* ========== SEARCH ========== */
+/ ========== SEARCH ========== /
 .search-section {
     padding: 0 0 48px;
     background: var(--color-bg);
@@ -551,7 +551,7 @@ p {
     display: block;
 }
 
-/* ========== TOPICS GRID ========== */
+/ ========== TOPICS GRID ========== /
 .topics-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -622,7 +622,7 @@ p {
     min-height: 38px;
 }
 
-/* ========== MOCK TESTS GRID ========== */
+/ ========== MOCK TESTS GRID ========== /
 .mocktests-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -705,7 +705,7 @@ p {
     justify-content: center;
 }
 
-/* ========== WHY MOCKLY ========== */
+/ ========== WHY MOCKLY ========== /
 .why-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -756,7 +756,7 @@ p {
     color: var(--color-text-muted);
 }
 
-/* ========== LEADERBOARD ========== */
+/ ========== LEADERBOARD ========== /
 .leaderboard-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -825,7 +825,7 @@ p {
     border-bottom: none;
 }
 
-/* ========== TESTIMONIALS ========== */
+/ ========== TESTIMONIALS ========== /
 .testimonials-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -876,7 +876,7 @@ p {
     font-size: 0.9rem;
 }
 
-/* ========== FOOTER ========== */
+/ ========== FOOTER ========== /
 .footer {
     background: var(--color-bg-alt);
     border-top: 1px solid var(--color-border);
@@ -951,7 +951,7 @@ p {
     color: var(--color-primary);
 }
 
-/* ========== MODAL ========== */
+/ ========== MODAL ========== /
 .modal-overlay {
     display: none;
     position: fixed;
@@ -1056,7 +1056,7 @@ p {
     display: none;
 }
 
-/* ========== SPINNER OVERLAY ========== */
+/ ========== SPINNER OVERLAY ========== /
 .spinner-overlay {
     display: none;
     position: fixed;
@@ -1088,7 +1088,7 @@ p {
     font-size: 1rem;
 }
 
-/* ========== FOCUS STYLES ========== */
+/ ========== FOCUS STYLES ========== /
 :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
@@ -1105,7 +1105,7 @@ a:focus-visible {
     border-radius: 2px;
 }
 
-/* ========== UTILITY ========== */
+/ ========== UTILITY ========== /
 .sr-only {
     position: absolute;
     width: 1px;
