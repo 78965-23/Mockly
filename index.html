@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="Style.css">
 </head>
 <body>
+
+    <!-- Skip to main content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- ========== NAVIGATION ========== -->
     <header class="nav" role="banner">
         <div class="nav-inner">
             <a href="#" class="nav-logo" aria-label="Mockly Home">Mock<span>ly</span></a>
+
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="#home">Home</a>
                 <a href="#topics">Topics</a>
@@ -20,17 +23,23 @@
                 <a href="#leaderboard">Leaderboard</a>
                 <a href="#about">About</a>
             </nav>
+
             <div class="nav-actions">
-                <button class="btn btn-outline" id="btnLogin">Login</button>
-                <button class="btn btn-primary" id="btnSignup">Sign Up</button>
+                <button class="btn btn-outline" id="btnLogin" aria-label="Open login form">Login</button>
+                <button class="btn btn-primary" id="btnSignup" aria-label="Open sign up form">Sign Up</button>
             </div>
+
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span class="hamburger-inner">
-                    <span></span><span></span><span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </span>
             </button>
         </div>
-        <div class="mobile-menu" id="mobileMenu">
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
             <a href="#home">Home</a>
             <a href="#topics">Topics</a>
             <a href="#mock-tests">Mock Tests</a>
@@ -43,15 +52,16 @@
         </div>
     </header>
 
+    <!-- ========== MAIN CONTENT ========== -->
     <main id="main-content">
 
-        <!-- HERO -->
+        <!-- Hero Section -->
         <section class="hero hero-wrapper" id="home" aria-labelledby="hero-heading">
             <div class="hero-decor" aria-hidden="true"></div>
             <div class="container hero-inner">
                 <div class="hero-content">
                     <h1 id="hero-heading">Practice Smarter.<br>Score Better.</h1>
-                    <p>Mockly provides thousands of highâ€‘quality MCQ practice questions across diverse topics. Take timed mock tests, track your performance, and excel in your exams with confidence.</p>
+                    <p>Mockly provides thousands of high-quality MCQ practice questions across diverse topics. Take timed mock tests, track your performance, and excel in your exams with confidence.</p>
                     <div class="hero-buttons">
                         <a href="#topics" class="btn btn-primary btn-lg">Start Practice</a>
                         <a href="#topics" class="btn btn-outline btn-lg">Browse Topics</a>
@@ -60,7 +70,7 @@
             </div>
         </section>
 
-        <!-- SEARCH -->
+        <!-- Search Section -->
         <section class="search-section" aria-label="Search topics and exams">
             <div class="container">
                 <div class="search-wrap">
@@ -74,29 +84,33 @@
             </div>
         </section>
 
-        <!-- TOPICS -->
+        <!-- Topics Section -->
         <section class="section" id="topics" aria-labelledby="topics-heading">
             <div class="container">
                 <div class="section-header">
                     <h2 id="topics-heading">Explore Topics</h2>
                     <p>Choose from a wide range of subjects and start practicing with curated MCQ sets.</p>
                 </div>
-                <div class="topics-grid" id="topicsGrid"></div>
+                <div class="topics-grid" id="topicsGrid">
+                    <!-- Cards populated by JavaScript -->
+                </div>
             </div>
         </section>
 
-        <!-- MOCK TESTS -->
+        <!-- Featured Mock Tests -->
         <section class="section section-alt" id="mock-tests" aria-labelledby="mocktests-heading">
             <div class="container">
                 <div class="section-header">
                     <h2 id="mocktests-heading">Featured Mock Tests</h2>
-                    <p>Fullâ€‘length timed mock exams designed to simulate real test environments.</p>
+                    <p>Full-length timed mock exams designed to simulate real test environments.</p>
                 </div>
-                <div class="mocktests-grid" id="mocktestsGrid"></div>
+                <div class="mocktests-grid" id="mocktestsGrid">
+                    <!-- Cards populated by JavaScript -->
+                </div>
             </div>
         </section>
 
-        <!-- WHY MOCKLY -->
+        <!-- Why Mockly -->
         <section class="section" id="about" aria-labelledby="why-heading">
             <div class="container">
                 <div class="section-header">
@@ -116,7 +130,7 @@
                     </div>
                     <div class="why-card">
                         <div class="why-icon" aria-hidden="true">ðŸ“š</div>
-                        <h3>Topicâ€‘wise Learning</h3>
+                        <h3>Topic-wise Learning</h3>
                         <p>Focus on specific subjects and subtopics to strengthen your weak areas systematically.</p>
                     </div>
                     <div class="why-card">
@@ -128,7 +142,7 @@
             </div>
         </section>
 
-        <!-- LEADERBOARD -->
+        <!-- Leaderboard Preview -->
         <section class="section section-alt" id="leaderboard" aria-labelledby="leaderboard-heading">
             <div class="container">
                 <div class="section-header">
@@ -145,25 +159,30 @@
                                 <th scope="col">Score</th>
                             </tr>
                         </thead>
-                        <tbody id="leaderboardBody"></tbody>
+                        <tbody id="leaderboardBody">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- TESTIMONIALS -->
+        <!-- Testimonials -->
         <section class="section" aria-labelledby="testimonials-heading">
             <div class="container">
                 <div class="section-header">
                     <h2 id="testimonials-heading">What Students Say</h2>
                     <p>Hear from learners who improved their scores with Mockly.</p>
                 </div>
-                <div class="testimonials-grid" id="testimonialsGrid"></div>
+                <div class="testimonials-grid" id="testimonialsGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
             </div>
         </section>
+
     </main>
 
-    <!-- FOOTER -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-grid">
@@ -205,7 +224,7 @@
         </div>
     </footer>
 
-    <!-- LOGIN/SIGNUP MODAL -->
+    <!-- ========== LOGIN / SIGNUP MODAL ========== -->
     <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
         <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
             <button class="modal-close" id="modalClose" aria-label="Close dialog">&times;</button>
@@ -222,13 +241,13 @@
                     <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
                 </div>
                 <button class="btn btn-primary" id="loginSubmit">Login</button>
-                <div style="display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--color-text-muted);font-size:0.85rem;">
-                    <span style="flex:1;height:1px;background:var(--color-border);"></span>
+                <div class="divider" style="display: flex; align-items: center; gap: 10px; margin: 16px 0; color: var(--color-text-muted); font-size: 0.85rem;">
+                    <span style="flex:1; height: 1px; background: var(--color-border);"></span>
                     <span>or</span>
-                    <span style="flex:1;height:1px;background:var(--color-border);"></span>
+                    <span style="flex:1; height: 1px; background: var(--color-border);"></span>
                 </div>
-                <button class="btn btn-outline" id="googleLoginBtn" style="width:100%;justify-content:center;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;">
+                <button class="btn btn-outline" id="googleLoginBtn" style="width:100%; justify-content: center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px;">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
                         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -255,13 +274,13 @@
                     <input type="password" id="signupPassword" placeholder="Create a password" autocomplete="new-password">
                 </div>
                 <button class="btn btn-primary" id="signupSubmit">Create Account</button>
-                <div style="display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--color-text-muted);font-size:0.85rem;">
-                    <span style="flex:1;height:1px;background:var(--color-border);"></span>
+                <div class="divider" style="display: flex; align-items: center; gap: 10px; margin: 16px 0; color: var(--color-text-muted); font-size: 0.85rem;">
+                    <span style="flex:1; height: 1px; background: var(--color-border);"></span>
                     <span>or</span>
-                    <span style="flex:1;height:1px;background:var(--color-border);"></span>
+                    <span style="flex:1; height: 1px; background: var(--color-border);"></span>
                 </div>
-                <button class="btn btn-outline" id="googleSignupBtn" style="width:100%;justify-content:center;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;">
+                <button class="btn btn-outline" id="googleSignupBtn" style="width:100%; justify-content: center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px;">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
                         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -274,7 +293,7 @@
         </div>
     </div>
 
-    <!-- LOADING SPINNER -->
+    <!-- ========== LOADING SPINNER OVERLAY ========== -->
     <div class="spinner-overlay" id="spinnerOverlay" aria-hidden="true" role="status">
         <div class="spinner"></div>
         <p class="spinner-text">Signing inâ€¦</p>
@@ -284,6 +303,8 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase config (updated) -->
     <script src="firebase-config.js"></script>
     <script src="Script.js" defer></script>
 </body>
