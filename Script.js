@@ -69,10 +69,19 @@ const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
 const switchToSignup = document.getElementById('switchToSignup');
 const switchToLogin = document.getElementById('switchToLogin');
+const spinnerOverlay = document.getElementById('spinnerOverlay');
+
+// Buttons
+const loginSubmit = document.getElementById('loginSubmit');
+const signupSubmit = document.getElementById('signupSubmit');
+const googleLoginBtn = document.getElementById('googleLoginBtn');
+const googleSignupBtn = document.getElementById('googleSignupBtn');
+const navLoginBtn = document.getElementById('btnLogin');
+const navSignupBtn = document.getElementById('btnSignup');
+const mobileLoginBtn = document.getElementById('btnLoginMobile');
+const mobileSignupBtn = document.getElementById('btnSignupMobile');
 
 /* ========== RENDER FUNCTIONS ========== */
-
-/** Render topic cards into the topics grid */
 function renderTopics(data) {
     topicsGrid.innerHTML = '';
     if (data.length === 0) {
@@ -95,7 +104,6 @@ function renderTopics(data) {
     });
 }
 
-/** Render mock test cards */
 function renderMockTests() {
     mocktestsGrid.innerHTML = '';
     mockTestsData.forEach(test => {
@@ -115,7 +123,6 @@ function renderMockTests() {
     });
 }
 
-/** Render leaderboard table rows */
 function renderLeaderboard() {
     leaderboardBody.innerHTML = '';
     leaderboardData.forEach(entry => {
@@ -140,7 +147,6 @@ function renderLeaderboard() {
     });
 }
 
-/** Render testimonial cards */
 function renderTestimonials() {
     testimonialsGrid.innerHTML = '';
     testimonialsData.forEach(t => {
@@ -174,7 +180,6 @@ searchInput.addEventListener('input', filterTopics);
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
     filterTopics();
-    // Scroll to topics section
     document.getElementById('topics').scrollIntoView({ behavior: 'smooth' });
 });
 searchInput.addEventListener('keydown', (e) => {
@@ -208,23 +213,22 @@ function toggleMobileMenu() {
 
 hamburger.addEventListener('click', toggleMobileMenu);
 
-// Close mobile menu when a link is clicked
 mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         closeMobileMenu();
     });
 });
-// Also close when mobile action buttons are clicked
 mobileMenu.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', () => {
         closeMobileMenu();
-        // Open modal for login/signup
-        const isSignup = btn.id === 'btnSignupMobile';
-        openModal(isSignup);
+        // If it's a login/signup button, also open modal
+        if (btn.id === 'btnLoginMobile' || btn.id === 'btnSignupMobile') {
+            const isSignup = btn.id === 'btnSignupMobile';
+            openModal(isSignup);
+        }
     });
 });
 
-// Close mobile menu on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
         closeMobileMenu();
@@ -232,7 +236,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Close mobile menu when resizing to desktop
 window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024 && mobileMenu.classList.contains('open')) {
         closeMobileMenu();
@@ -251,7 +254,6 @@ function openModal(showSignup = false) {
         loginForm.classList.remove('form-hidden');
     }
     document.body.style.overflow = 'hidden';
-    // Focus the first input in the visible form
     const visibleForm = showSignup ? signupForm : loginForm;
     const firstInput = visibleForm.querySelector('input');
     if (firstInput) setTimeout(() => firstInput.focus(), 100);
@@ -268,29 +270,157 @@ modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) closeModal();
 });
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
+});
+
+/* ========== SPINNER ========== */
+function showSpinner() {
+    spinnerOverlay.classList.add('open');
+    spinnerOverlay.setAttribute('aria-hidden', 'false');
+}
+function hideSpinner() {
+    spinnerOverlay.classList.remove('open');
+    spinnerOverlay.setAttribute('aria-hidden', 'true');
+}
+
+/* ========== FIREBASE AUTH ========== */
+
+// Helper: create user profile in Firestore
+async function createUserProfile(user, additionalData = {}) {
+    try {
+        await db.collection('users').doc(user.uid).set({
+            email: user.email,
+            displayName: user.displayName || additionalData.displayName || '',
+            photoURL: user.photoURL || '',
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            ...additionalData
+        }, { merge: true });
+    } catch (error) {
+        console.error('Error creating user profile:', error);
+    }
+}
+
+// Email/Password Login
+loginSubmit.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    if (!email || !password) return alert('Please fill in all fields.');
+
+    showSpinner();
+    try {
+        await auth.signInWithEmailAndPassword(email, password);
         closeModal();
+        document.getElementById('loginEmail').value = '';
+        document.getElementById('loginPassword').value = '';
+    } catch (error) {
+        alert('Login failed: ' + error.message);
+    } finally {
+        hideSpinner();
     }
 });
 
-// Nav buttons
-document.getElementById('btnLogin').addEventListener('click', () => openModal(false));
-document.getElementById('btnSignup').addEventListener('click', () => openModal(true));
-document.getElementById('btnLoginMobile').addEventListener('click', () => openModal(false));
-document.getElementById('btnSignupMobile').addEventListener('click', () => openModal(true));
+// Email/Password Signup
+signupSubmit.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    if (!name || !email || !password) return alert('Please fill in all fields.');
+    if (password.length < 6) return alert('Password must be at least 6 characters.');
+
+    showSpinner();
+    try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        await userCredential.user.updateProfile({ displayName: name });
+        await createUserProfile(userCredential.user, { displayName: name });
+        closeModal();
+        document.getElementById('signupName').value = '';
+        document.getElementById('signupEmail').value = '';
+        document.getElementById('signupPassword').value = '';
+    } catch (error) {
+        alert('Signup failed: ' + error.message);
+    } finally {
+        hideSpinner();
+    }
+});
+
+// Google Sign-In
+async function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    showSpinner();
+    try {
+        const result = await auth.signInWithPopup(provider);
+        if (result.additionalUserInfo?.isNewUser) {
+            await createUserProfile(result.user);
+        }
+        closeModal();
+    } catch (error) {
+        if (error.code !== 'auth/popup-closed-by-user') {
+            alert('Google sign-in failed: ' + error.message);
+        }
+    } finally {
+        hideSpinner();
+    }
+}
+
+googleLoginBtn.addEventListener('click', signInWithGoogle);
+googleSignupBtn.addEventListener('click', signInWithGoogle);
+
+// Modal open buttons (nav)
+navLoginBtn.addEventListener('click', () => {
+    if (auth.currentUser) {
+        auth.signOut();
+    } else {
+        openModal(false);
+    }
+});
+navSignupBtn.addEventListener('click', () => openModal(true));
+mobileLoginBtn.addEventListener('click', () => {
+    if (auth.currentUser) {
+        auth.signOut();
+    } else {
+        openModal(false);
+    }
+});
+mobileSignupBtn.addEventListener('click', () => openModal(true));
 
 // Toggle between login and signup
 switchToSignup.addEventListener('click', () => {
     loginForm.classList.add('form-hidden');
     signupForm.classList.remove('form-hidden');
-    const firstInput = signupForm.querySelector('input');
-    if (firstInput) firstInput.focus();
+    document.getElementById('signupName').focus();
 });
 switchToLogin.addEventListener('click', () => {
     signupForm.classList.add('form-hidden');
     loginForm.classList.remove('form-hidden');
-    const firstInput = loginForm.querySelector('input');
-    if (firstInput) firstInput.focus();
+    document.getElementById('loginEmail').focus();
+});
+
+// Auth state observer – update UI when user logs in/out
+auth.onAuthStateChanged(user => {
+    const loginBtn = document.getElementById('btnLogin');
+    const signupBtn = document.getElementById('btnSignup');
+    const mobileLogin = document.getElementById('btnLoginMobile');
+    const mobileSignup = document.getElementById('btnSignupMobile');
+
+    if (user) {
+        // User is signed in
+        loginBtn.textContent = 'Logout';
+        loginBtn.classList.add('btn-outline'); // make it look like a secondary button
+        loginBtn.classList.remove('btn-primary');
+        signupBtn.style.display = 'none';
+        if (mobileLogin) mobileLogin.textContent = 'Logout';
+        if (mobileSignup) mobileSignup.style.display = 'none';
+    } else {
+        // User is signed out
+        loginBtn.textContent = 'Login';
+        loginBtn.classList.remove('btn-outline'); // revert to original outline
+        loginBtn.classList.add('btn-outline');
+        signupBtn.style.display = 'inline-flex';
+        if (mobileLogin) mobileLogin.textContent = 'Login';
+        if (mobileSignup) mobileSignup.style.display = 'block';
+    }
 });
 
 /* ========== INITIAL RENDER ========== */
@@ -300,7 +430,6 @@ function init() {
     renderLeaderboard();
     renderTestimonials();
 }
-
 init();
 
 /* ========== SMOOTH SCROLL FOR ALL ANCHOR LINKS (fallback) ========== */
@@ -312,7 +441,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (target) {
             e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth' });
-            // Close mobile menu if open
             if (mobileMenu.classList.contains('open')) {
                 closeMobileMenu();
             }
