@@ -1,13 +1,13 @@
-/* ========== MOCK DATA ========== */
+/ ========== MOCK DATA ========== /
 const topicsData = [
-    { name: 'Mathematics', count: '2,500+', icon: '📐' },
-    { name: 'Science', count: '1,800+', icon: '🔬' },
-    { name: 'History', count: '1,200+', icon: '📜' },
-    { name: 'Geography', count: '900+', icon: '🌍' },
-    { name: 'Current Affairs', count: '3,000+', icon: '📰' },
-    { name: 'English', count: '2,100+', icon: '📖' },
-    { name: 'Computer Knowledge', count: '1,500+', icon: '💻' },
-    { name: 'Reasoning', count: '1,700+', icon: '🧠' },
+    { name: 'Mathematics', count: '2,500+', icon: 'ðŸ“' },
+    { name: 'Science', count: '1,800+', icon: 'ðŸ”¬' },
+    { name: 'History', count: '1,200+', icon: 'ðŸ“œ' },
+    { name: 'Geography', count: '900+', icon: 'ðŸŒ' },
+    { name: 'Current Affairs', count: '3,000+', icon: 'ðŸ“°' },
+    { name: 'English', count: '2,100+', icon: 'ðŸ“–' },
+    { name: 'Computer Knowledge', count: '1,500+', icon: 'ðŸ’»' },
+    { name: 'Reasoning', count: '1,700+', icon: 'ðŸ§ ' },
 ];
 
 const mockTestsData = [
@@ -53,7 +53,7 @@ const testimonialsData = [
     },
 ];
 
-/* ========== DOM REFERENCES ========== */
+/ ========== DOM REFERENCES ========== /
 const topicsGrid = document.getElementById('topicsGrid');
 const mocktestsGrid = document.getElementById('mocktestsGrid');
 const leaderboardBody = document.getElementById('leaderboardBody');
@@ -81,7 +81,7 @@ const navSignupBtn = document.getElementById('btnSignup');
 const mobileLoginBtn = document.getElementById('btnLoginMobile');
 const mobileSignupBtn = document.getElementById('btnSignupMobile');
 
-/* ========== RENDER FUNCTIONS ========== */
+/ ========== RENDER FUNCTIONS ========== /
 function renderTopics(data) {
     topicsGrid.innerHTML = '';
     if (data.length === 0) {
@@ -114,8 +114,8 @@ function renderMockTests() {
             <span class="difficulty ${test.difficulty}">${diffLabel}</span>
             <h3>${test.title}</h3>
             <div class="mocktest-details">
-                <span>⏱ ${test.duration}</span>
-                <span>📝 ${test.questions}</span>
+                <span>â± ${test.duration}</span>
+                <span>ðŸ“ ${test.questions}</span>
             </div>
             <button class="btn btn-primary" aria-label="Start ${test.title}">Take Test</button>
         `;
@@ -152,7 +152,7 @@ function renderTestimonials() {
     testimonialsData.forEach(t => {
         const card = document.createElement('div');
         card.className = 'testimonial-card';
-        const starsStr = '★'.repeat(t.stars) + '☆'.repeat(5 - t.stars);
+        const starsStr = 'â˜…'.repeat(t.stars) + 'â˜†'.repeat(5 - t.stars);
         card.innerHTML = `
             <div class="stars" aria-label="${t.stars} out of 5 stars">${starsStr}</div>
             <p class="quote">"${t.quote}"</p>
@@ -163,7 +163,7 @@ function renderTestimonials() {
     });
 }
 
-/* ========== SEARCH FUNCTIONALITY ========== */
+/ ========== SEARCH FUNCTIONALITY ========== /
 function filterTopics() {
     const query = searchInput.value.trim().toLowerCase();
     if (query === '') {
@@ -190,7 +190,7 @@ searchInput.addEventListener('keydown', (e) => {
     }
 });
 
-/* ========== MOBILE MENU ========== */
+/ ========== MOBILE MENU ========== /
 function openMobileMenu() {
     mobileMenu.classList.add('open');
     hamburger.classList.add('active');
@@ -242,7 +242,7 @@ window.addEventListener('resize', () => {
     }
 });
 
-/* ========== MODAL LOGIC ========== */
+/ ========== MODAL LOGIC ========== /
 function openModal(showSignup = false) {
     modalOverlay.classList.add('open');
     modalOverlay.setAttribute('aria-hidden', 'false');
@@ -273,7 +273,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
 });
 
-/* ========== SPINNER ========== */
+/ ========== SPINNER ========== /
 function showSpinner() {
     spinnerOverlay.classList.add('open');
     spinnerOverlay.setAttribute('aria-hidden', 'false');
@@ -283,7 +283,7 @@ function hideSpinner() {
     spinnerOverlay.setAttribute('aria-hidden', 'true');
 }
 
-/* ========== FIREBASE AUTH ========== */
+/ ========== FIREBASE AUTH ========== /
 
 // Helper: create user profile in Firestore
 async function createUserProfile(user, additionalData = {}) {
@@ -367,7 +367,7 @@ async function signInWithGoogle() {
 googleLoginBtn.addEventListener('click', signInWithGoogle);
 googleSignupBtn.addEventListener('click', signInWithGoogle);
 
-// Modal open buttons (nav)
+// Modal open buttons (nav) â€“ login now also acts as logout when already signed in
 navLoginBtn.addEventListener('click', () => {
     if (auth.currentUser) {
         auth.signOut();
@@ -397,7 +397,7 @@ switchToLogin.addEventListener('click', () => {
     document.getElementById('loginEmail').focus();
 });
 
-// Auth state observer – update UI when user logs in/out
+// Auth state observer â€“ update UI when user logs in/out
 auth.onAuthStateChanged(user => {
     const loginBtn = document.getElementById('btnLogin');
     const signupBtn = document.getElementById('btnSignup');
@@ -407,23 +407,24 @@ auth.onAuthStateChanged(user => {
     if (user) {
         // User is signed in
         loginBtn.textContent = 'Logout';
-        loginBtn.classList.add('btn-outline'); // make it look like a secondary button
+        // Make logout button look secondary (outline style)
         loginBtn.classList.remove('btn-primary');
+        loginBtn.classList.add('btn-outline');
         signupBtn.style.display = 'none';
         if (mobileLogin) mobileLogin.textContent = 'Logout';
         if (mobileSignup) mobileSignup.style.display = 'none';
     } else {
         // User is signed out
         loginBtn.textContent = 'Login';
-        loginBtn.classList.remove('btn-outline'); // revert to original outline
-        loginBtn.classList.add('btn-outline');
+        loginBtn.classList.remove('btn-outline');
+        loginBtn.classList.add('btn-outline'); // it already is outline by default, but just to be safe
         signupBtn.style.display = 'inline-flex';
         if (mobileLogin) mobileLogin.textContent = 'Login';
         if (mobileSignup) mobileSignup.style.display = 'block';
     }
 });
 
-/* ========== INITIAL RENDER ========== */
+/ ========== INITIAL RENDER ========== /
 function init() {
     renderTopics(topicsData);
     renderMockTests();
@@ -432,7 +433,7 @@ function init() {
 }
 init();
 
-/* ========== SMOOTH SCROLL FOR ALL ANCHOR LINKS (fallback) ========== */
+/ ========== SMOOTH SCROLL FOR ALL ANCHOR LINKS (fallback) ========== /
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
